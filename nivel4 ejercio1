@@ -1,3 +1,6 @@
+uxiono
+permatrago
+
 CONSIGNA 4
 Ejercicio 1
 La información de los equipos se encuentra en una secuencia de carácter, con el siguiente formato:
@@ -16,6 +19,124 @@ Considerar que la Posición puede ser (AR, DF, ME, DE)
 Se le solicita:
 Cantidad de jugadores que nacieron luego de una fecha ingresada por el usuario.
 ¿Cuántos jugadores componen cada plantel ?
-Generar una secuencia de salida, con el nombre de la selección, y la cantidad de jugadores, de todos los equipos que son cabeza de serie.
+Generar una secuencia de salida, con el nombre de la selección, y la cantidad de jugadores, 
+de todos los equipos que son cabeza de serie.
 
 se asume que como máximo el plantel podrá tener 99 personas
+
+escribir('te sere sinsero baki, no esculpi estos musculos para pelear sino para hacer esto:')
+accion mesi es
+ambiente
+
+jugadores,sal: secuencia de caacteres
+j:caracter
+anio_U,anio_J:n(4)
+cant_jug,jugadores_u:n(2)
+
+procedure convertir_anio():
+	ambiente
+	m,d,c,u:= entero
+
+	m:= caracter_entero(j)*1000;avanzar(jugadores,j)
+	c:= caracter_entero(j)*100;avanzar(jugadores,j)
+	d:= caracter_entero(j)*10;avanzar(jugadores,j)
+	u:= caracter_entero(j);avanzar(jugadores,j)
+
+	anio_J:= m + c + d + u
+fin_procedure
+
+procedure entero_caracter2(a:entero):
+x:= a	
+fin_para i:= 2 hasta 1,-1 hacer
+    c:= x DIV (10**(i-1))
+    x:= x mod (10**(i-1))
+
+    esrcribir(sal,entero_caracter(c))
+fin_funtion
+
+funtion entero_caracter(l:entero):caracter
+	segun l hacer
+		1 : entero_caracter:='1'
+		2 : entero_caracter:='2'
+		3 : entero_caracter:='3'
+		4 : entero_caracter:='4'
+		5 : entero_caracter:='5'
+		6 : entero_caracter:='6'
+		7 : entero_caracter:='7'
+		8 : entero_caracter:='8'
+		9 : entero_caracter:='9'
+		0 : entero_caracter:='0'
+	fin_segun
+fin_funtion
+
+funtion caracter_entero(p:caracter):entero
+	segun p hacer
+		'1':caracter_entero:=1
+		'2':caracter_entero:=2
+		'3':caracter_entero:=3
+		'4':caracter_entero:=4
+		'5':caracter_entero:=5
+		'6':caracter_entero:=6
+		'7':caracter_entero:=7
+		'8':caracter_entero:=8
+		'9':caracter_entero:=9
+		'0':caracter_entero:=0
+	fin_segun
+fin_funtion
+
+proceso
+arr(jugadores); avanzar(jugadores,j)
+crea(sal)
+esrcribir('ingrese anio')
+leer(anio_U)
+jugadores_u:=0
+
+mientras nfds(jugadores) hacer
+	res_cabeza:= j
+	cant_jug:=0
+	si res_cabeza = 'S' entonces//guarda el nombre en salida
+		avanzar(jugadores,j)
+		mientras j <> '#' entonces
+            escribir(j)
+			esrcribir(sal,j)
+			avanzar(jugadores,j)
+	    fin_mientras
+	sino
+		mientras j <> '#' entonces//no guarda el nombre en salida
+            escribir(j)
+			avanzar(jugadores,j)
+		fin_mientras
+	fin_si	 
+	avanzar(jugadores,J)
+	mientras j <> '!' hacer //cuenta los juagdores
+		cant_jug:= cant_jug +1
+
+		mientras j <> '-' hacer//avanza nombre
+			avanzar(jugadores,j)
+		fin_mientras
+        para i:= 1 hasta 3 hacer
+		    avanzar(jugadores,j)
+		fin_para//avanza posicion
+		convertir_anio()//rescata el año de nacimiento y lo convierte en entero
+
+		si anio_J > anio_U entonces// si es mayor al año del usuario suma 1
+			jugadores_u:= jugadores_u + 1
+		fin_si	
+	fin_mientras
+
+	si res_cabeza = 'S' entonces//si es cabeza de serie
+		si cant_jug > 9 entonces
+			entero_caracter2(cant_jug)//si tiene dos digitos, guarda en salida la cantidad de juagadores 
+		sino
+			esrcribir(sal,entero_caracter(cant_jug))//si tiene un digito, guarda en salida la cantidad de juagadores 
+		fin_si		
+	fin_si
+	
+	esrcribir('este plantel se conmpone de ',cant_jug,' jugadores')//la consigna pide informar la cantidad de todos los planteles
+	esrcribir('los jugadores mayores a la fecha ingresada es de ',jugadores_u,' jugadores')		
+fin_mientras
+
+Cerrar(jugadores)
+Cerrar(sal)
+
+fin_algoritmo
