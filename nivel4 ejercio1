@@ -1,0 +1,21 @@
+CONSIGNA 4
+Ejercicio 1
+La información de los equipos se encuentra en una secuencia de carácter, con el siguiente formato:
+
+EsCabezaDeSerie(1caracter)NombreSeleccion#InformacionJugadores!
+
+EsCabezaDeSerie(1caracter)NombreSeleccion#InformacionJugadores![...] FDS
+
+Donde InformacionJugadores tiene la siguiente estructura:
+ApellidoYNombreJugador1-Posicion(2caracter)AñoNacimiento(4caracter)ApellidoYNombreJugador2-Posicion(2caracter)AñoNacimiento(4caracter) [...] FDS
+
+EscabezaDeSerie se indica con un carácter S o N.
+
+Considerar que la Posición puede ser (AR, DF, ME, DE)
+
+Se le solicita:
+Cantidad de jugadores que nacieron luego de una fecha ingresada por el usuario.
+¿Cuántos jugadores componen cada plantel ?
+Generar una secuencia de salida, con el nombre de la selección, y la cantidad de jugadores, de todos los equipos que son cabeza de serie.
+
+se asume que como máximo el plantel podrá tener 99 personas
