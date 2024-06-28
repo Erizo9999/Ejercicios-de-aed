@@ -1,0 +1,12 @@
+Ejercicio 2
+Se tiene la información de todos los jugadores de cada uno de los planteles en un archivo secuencial con el siguiente formato
+
+Jugadores (Ordenado por selección, Posición y Dorsal)
+Seleccion | Posicion (AR, DF, ME, DE, CT) | Dorsal | Apellido y Nombre | Participaciones
+
+Donde: Posicion (AR (Arquero), DF (Defensa), ME (Mediocampista), DE(Delantero), CT (Cuerpo Técnico)
+El campo Participaciones indica cuántas veces participó un jugador en una copa américa. 
+Se le solicita:
+Obtener total de personas que integran cada Selección, por nombre de selección y posición, y total general discriminando por jugadores con experiencia y sin experiencia. Excluyendo a los integrantes de la comisión técnica.
+Generar una secuencia de salida con la siguiente información:
+Selección |  Cant Jugadores nuevos | Cant jugadores con experiencia
