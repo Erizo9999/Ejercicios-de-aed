@@ -1,0 +1,115 @@
+Ejercicio 2 38m
+Se tiene información de todas las ediciones de la copa américa hasta la actual, 
+con los respectivos estadios en un archivo secuencial con el siguiente formato:
+
+Estadios (Ordenado por País edición, año edición, ciudad sede y Nombre estadio)
+País Edición | Año Edición | Ciudad Sede | Nombre estadio | capacidad | cant partidos jugados
+
+Se le solicita:
+-Total de partidos jugados por país y ciudad sede en estadios con capacidad superior a 40mil personas
+
+-Generar un archivo de salida con el siguiente formato
+País  Edición | Año edicion | Cant partidos jugados
+
+-Informar por estadio, el país, año de edición, ciudad, la cantidad de partidos jugados.
+
+accion mesii es 
+ambiente
+
+formato1= registro
+	país_edicion:an(40)
+	anio_edicion:n(4)
+	ciudad_sede:an(40)
+	nom_estadio:an(40)
+	capacidad:n(9)
+	cant_p_jugados:n(3)
+fin_registro
+
+formato2= registro
+	país_edicion:an(40)
+	anio_edicion:n(4)
+	cant_p_jugados:n(3)
+fin_registro
+
+Estadios: archivo ordenado por País edición, año edición, ciudad sede y Nombre estadio
+reg_E: formato1
+Sal: archivo ordenado por País edición, año edición
+reg_S:formato2
+
+proccedure corte_pais()
+	corte_ciudad()
+	escribir('la cantidad de partidos en el pais',res_pais,'es de ', tot_pais40)
+	tot_pais40:=0
+	res_pais:=reg_E.país_edicion
+fin_procedure
+
+procedure corte_anio()
+	//guardo en salida
+	reg_S.país_edicion:= res_pais
+	reg_S.anio_sede:=res_anio
+	reg_S.cant_p_jugados:=tot_anio
+	escribir(Sal,reg_S)
+
+	res_anio:=reg_E.anio_sede
+	tot_pais40:= tot_pais40 + tot_anio40
+	tot_anio40:= 0
+	tot_anio:= 0
+fin_procedure
+
+
+procedure corte_ciudad()
+	escribir('la cantidad de partidos en la ciudad',res_anio,'es de ', tot_ciudad40)
+	tot_pais40:= tot_pais + tot_anio
+	tot_anio40:= tot_anio + tot_ciudad 
+	tot_pais40:= 0
+	tot_pais:= tot_pais + tot_anio
+	tot_anio:= tot_anio + tot_ciudad 
+	tot_pais:= 0
+	res_ciudad:= reg_E.ciudad_sede
+fin_procedure
+
+res_pais:reg_E.país_edicion
+res_anio:reg_E.anio_sede
+res_ciudad:reg_E.ciudad_sede
+
+
+tot_anio:entero
+tot_ciudad:entero
+
+tot_pais40:entero
+tot_anio40:entero
+tot_ciudad40:entero
+
+proceso
+
+abrir(Estadios);leer(Estadios,reg_E)
+crear(Sal)
+
+tot_ciudad:=0;tot_ciudad40:=0;tot_anio:=0;tot_anio40:=0;tot_pais40:=0//totalizadores
+
+res_pais:=reg_E.país_edicion;res_anio:= reg_E.ciudad_sede//resguardos
+
+mientras nfda(Estadios) hacer
+	si res_pais <> reg_E.país_edicion entonces
+		corte_pais()
+	sino
+		si res_anio <> reg_E.anio_sede entonces
+			corte_anio()
+		fin_si
+	fin_si
+
+	//tratar reg
+	si (reg_E.capacidad > 40000) entonces
+		tot_ciudad40:= tot_ciudad40 + reg_E.cant_p_jugados
+	sino
+		tot_ciudad:= tot_ciudad + reg_E.cant_p_jugados
+	fin_si
+
+	leer(Estadios,reg_E)
+	
+	escribir('El estadio', reg_E.nom_estadio,'del pais',reg_E.país_edicion,'del anio',reg_E.anio_edicion,'de la ciudad',reg_E.ciudad_sede,'tiene ',reg_E.cant_p_jugados,' partidos jugados')	
+fin_mientras
+	corte_anio()
+
+cerrar(Estadios)
+cerrar(sal)
